@@ -2,20 +2,20 @@
 {
     public class Position
     {
-        public int linha { get; set; }
-        public int coluna { get; set; }
+        public int line { get; set; }
+        public int column { get; set; }
 
         public Position(int linha, int coluna)
         {
-            this.linha = linha;
-            this.coluna = coluna;
+            this.line = linha;
+            this.column = coluna;
         }
 
         public override string ToString()
         {
-            return linha
-                + ", "
-                + coluna;
+            return line
+                   + ", "
+                   + column;
         }
     }
 }

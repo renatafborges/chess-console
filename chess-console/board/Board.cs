@@ -13,9 +13,15 @@
             pieces = new Piece[lines, columns];
         }
         
-        public Piece piece(int line, int column)
+        public Piece Piece(int line, int column)
         {
             return pieces[line, column];
+        }
+        
+        public void InsertPiece(Piece piece, Position position)
+        {
+            pieces[position.line, position.column] = piece;
+            piece.position = position;
         }
     }
 }
