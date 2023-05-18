@@ -7,20 +7,39 @@ namespace chess_console
     {
         public static void PrintBoard(Board board)
         {
-            for (int i = 0; i < board.lines; i++)
+            for (int i=0; i<board.lines; i++)
             {
-                for (int j = 0; j < board.columns; j++)
+                Console.Write(8 - i + " ");
+                
+                for (int j=0; j<board.columns; j++)
                 {
-                    if (board.Piece(i,j) == null)
+                    if (board.piece(i,j) == null)
                     {
                         Console.Write("- ");
                     }
-                    else 
+                    else
                     {
-                        Console.Write(board.Piece(i, j) + " ");
+                        PrintPiece(board.piece(i, j));
+                        Console.Write(" ");
                     }
                 }
                 Console.WriteLine();
+            }
+            Console.WriteLine("  A B C D E F G H ");
+        }
+
+        public static void PrintPiece(Piece piece)
+        {
+            if (piece.color == Color.White)
+            {
+                Console.Write(piece);
+            }
+            else
+            {
+                ConsoleColor aux = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write(piece);
+                Console.ForegroundColor = aux;
             }
         }
     }

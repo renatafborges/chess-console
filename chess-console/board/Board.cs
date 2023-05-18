@@ -13,33 +13,33 @@
             pieces = new Piece[lines, columns];
         }
         
-        public Piece Piece(int line, int column)
+        public Piece piece(int line, int column)
         {
             return pieces[line, column];
         }
         
-        public Piece piece(Position position)
+        private Piece piece(Position position)
         {
             return pieces[position.line, position.column];
         }
 
-        public bool ContainsPiece(Position position)
+        private bool ContainsPiece(Position position)
         {
             ValidatePosition(position);
             return piece(position) != null;
         }
         
-        public void InsertPiece(Piece piece, Position position)
+        public void InsertPiece(Piece p, Position pos)
         {
-            if (ContainsPiece(position))
+            if (ContainsPiece(pos))
             {
                 throw new BoardException("There is already a piece in this position");
             }
-            pieces[position.line, position.column] = piece;
-            piece.position = position;
+            pieces[pos.line, pos.column] = p;
+            p.position = pos;
         }
 
-        public bool ValidPosition(Position position)
+        private bool ValidPosition(Position position)
         {
                 if (position.line < 0 || position.line >= lines || position.column < 0 || position.column >= columns)
                 {
@@ -48,7 +48,7 @@
                 return true;
         }
 
-        public void ValidatePosition(Position position)
+        private void ValidatePosition(Position position)
         {
             if (!ValidPosition(position))
             {
