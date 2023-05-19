@@ -38,6 +38,18 @@
             pieces[pos.line, pos.column] = p;
             p.position = pos;
         }
+        
+        public Piece RemovePiece(Position pos)
+        {
+            if (piece(pos) == null)
+            {
+                return null;
+            }
+            Piece aux = piece(pos);
+            aux.position = null;
+            pieces[pos.line, pos.column] = null;
+            return aux;
+        }
 
         private bool ValidPosition(Position position)
         {

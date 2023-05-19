@@ -1,6 +1,7 @@
 ﻿using System;
 using board;
 using chess;
+using System.Xml;
 
 namespace chess_console
 {
@@ -10,21 +11,25 @@ namespace chess_console
         {
             try
             {
-                Board board = new Board(8, 8);
-            
-                board.InsertPiece(new Rock(board, Color.Black), new Position(0, 0));
-                board.InsertPiece(new Rock(board, Color.Black), new Position(1, 3));
-                board.InsertPiece(new King(board, Color.Black), new Position(0, 2));
-                
-                board.InsertPiece(new King(board, Color.White), new Position(3, 5));
+                ChessGame chessGame = new ChessGame();
 
-                Screen.PrintBoard(board);
-                Console.ReadLine();
+                while (!chessGame.finished)
+                {
+                    Console.Clear();
+                    Screen.PrintBoard(chessGame.board);
+
+                    Console.WriteLine();
+                    Console.WriteLine("Insert piece origin:");
+                    Position origin = Screen.ReadChessPosition().ToPosition();
+                    Console.WriteLine("Insert piece destination:");
+                    Position destination = Screen.ReadChessPosition().ToPosition();
+                    
+                    chessGame.MakeMove(origin, destination);
+                }
             }
             catch (BoardException exception)
             {
                 Console.WriteLine(exception.Message);
-                throw;
             }
             Console.ReadLine();
         }

@@ -4,7 +4,7 @@ namespace chess
 {
     public class ChessPosition
     {
-        public char column { get; set; }
+        public char column { get; private set; }
         public int line { get; set; }
 
         public ChessPosition(char column, int line)
